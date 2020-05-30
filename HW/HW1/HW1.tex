@@ -1,0 +1,148 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{setspace} 
+\onehalfspacing
+ 
+ 
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{AMATH 383 Homework 1}
+\rhead{Nan Tang (1662478)}
+\rfoot{Page \thepage}
+
+\begin{document}
+\section*{Exercise 4.1}
+\subsection*{a}
+\noindent $y(t)$ is the amount of $^{210}Pb$ at time $t$, $\lambda$ is the decay rate of $^{210}Pb$. \\
+
+\noindent While in the ore, the amount of $^{210}Pb$ as r that replenished from $^{226}Ra$ decaying is the only source of increment. The only decrement for $^{210}Pb$ is decaying, which depends on current amount of $^{210}Pb$. Therefore, the change in $^{210}Pb$ can be expressed as $\frac{dy}{dt} = -\lambda y + r$. \\
+
+\noindent After manufacture, element $^{226}Ra$ are removed, from which $^{210}Pb$ replenishes its amount. Hence, the amount of $^{210}Pb$ no longer gets increment. Meanwhile, the decaying process of $^{210}Pb$ continues, which has same equation as before. Therefore, the change in $^{210}Pb$ can be written as $\frac{dy}{dt} = -\lambda y $
+
+\subsection*{b}
+\noindent While in the ore, $^{210}Pb$ and $^{226}Ra$ are in a radioactive equilibrium , implying $\frac{dy}{dt} = 0$, or $- \lambda y+ r = 0$. Let $t_0$ denotes the last minute before manufacture. Then, at the time $t_0$, equilibrium exists but no longer holds, i.e. $\lambda y(t_0) = r$
+
+\subsection*{c}
+Solve for $\frac{dy}{dt} = -\lambda y(t) \Rightarrow \text{general aolution: } y(t) = y(t_0) e^{- \lambda (t - t_0)} $ \\
+
+\noindent Plug in the initial condition: $y(t_0) = \frac{r}{\lambda} \Rightarrow y(t) = \frac{r}{\lambda} e^{-\lambda (t - t_0)}$
+
+\subsection*{d}
+\noindent From previous step, we know that solution for $\frac{dy}{dt} = -\lambda y(t)$ is $y(t) = \frac{r}{\lambda} e^{-\lambda (t - t_0)}$\\
+
+\noindent The rate of change $\frac{dy}{dt} = -\lambda  \frac{r}{\lambda} e^{-\lambda (t - t_0)} = - r e^{-\lambda (t - t_0)}$ \\
+
+\noindent Note that decay rate of $^{210}Pb$ $\lambda$ is $\frac{ln2}{22}$, $r = 0 \to 200$ and $\frac{dy}{dt} = - 8.5$\\
+
+\noindent Then we can get the equation $r e^{ -\lambda (t - t_0)} = 8.5 \Rightarrow (0 \to 200) e^{- \frac{ln2}{22} (t - t_0)}  =  8.5$ \\
+
+\noindent Since $(t - t_0)$ is positively correlated with value of $r$, we choose the maximum value of $r$ to find the maximum value of $(t - t_0)$.\\
+
+\noindent Solve for $200 e ^{-\frac{ln2}{22} (t - t_0)} = 8.5 \Rightarrow (t - t_0) \approx 100.24$ \\
+
+\noindent The maximum age of this painting is 100 years. 
+
+\newpage
+
+\section*{Exercise 4.4}
+\noindent Plug $k = 0$ into the equation for change of infected cells $\frac{dT^{*}}{dt} = kVT - \delta T$, we get $\frac{dT^{*}}{dt} = -\delta T^{*}$ \\
+
+\noindent Solve for this equation, we get equation for number of infected cells $T^{*}(t) = C e^{-\delta t}$ \\
+
+\noindent Since at time $t=0$, $T^*$ is approximate constant as $T^*_0$. Plug this initial condition into $T^*{t}$, we get $T^*(t) = T^*_0 e^{-\delta t}$ \\
+
+\noindent Plug equation of $T^{*}(t)$ into the equation for production of virus, we get $P(t) = N \delta T^{*}_0 e^{-\delta t}$ \\
+
+\noindent Then the equation for change of virus becomes $\frac{dV}{dt} =N \delta T^{*}_0 e^{-\delta t} - cV $ where $T^*_0, N, \delta$ are constant
+\begin{align*}
+\text{let } u(t) & = e^{\int c dt} = e^{ct} \\
+\int q(t) u(t) dt & = \int N \delta T_0^* e^{-\delta t} e^{ct} dt \\
+& =  N \delta T_0^* \int e^{(c - \delta )t} dt = \frac{ N \delta T_0^*}{c - \delta} (e^{(c - \delta)t}) \\
+V(t) & = (\int q(t) u(t) dt + C) / u(t) \\
+& = e^{-ct}( \frac{ N \delta T_0^*}{c - \delta} e^{c - \delta t} + C) \text{, where C is a constant} \\
+& = \frac{N \delta T_0^*}{c - \delta} e^{-\delta t} + C e^{-ct}
+\end{align*}
+
+\noindent Let $V_0$ denotes amount of virus at $t = 0$ and  assume that $\frac{dV}{dt} = 0$ at the beginning. \\
+
+\noindent Then $P(0) - cV(0) = 0 \Rightarrow N \delta T^*_0 = cV(0)$ \\
+
+\noindent Plug the initial condition that $V(t=0) = V_0$ and $N \delta T^*_0 = cV(0)$ into the general solution. 
+\begin{align*}
+V(t = 0) &= \frac{N \delta T_0^*}{c - \delta} e^{0} + C e^{0} \text{where C is a constant} \\
+V_0 &= \frac{c V_0}{c - \delta} + C \\
+C &= -\frac{\delta V_0}{c - \delta}
+\end{align*}
+
+\noindent The solution for the equation of virion is $V(t) = \frac{V_0}{c - \delta} (ce^{- \delta t} - \delta e^{- c t})$
+
+\newpage
+\section*{Exercise 4.5}
+\subsection*{a}
+\noindent Solve for $\frac{dV_I}{dt} = -cV_I$, we get $V_I(t) = Ce^{-c t}$, where C is a constant. \\
+
+\noindent Plug the initial condition $V_I(t = 0) = V_0$ into general solution, we get $V_I(t) = V_0 e^{-c t}$ \\
+
+\noindent Substitute $V_I(t)$ into equation $\frac{d T^*}{dt} = k V_I T - \delta T^*$ and assuming $T = T_0$ is a constant. 
+\begin{align*}
+\frac{d T^*}{dt} &= k V_0 T_0 e^{-ct} - \delta T^* \\
+u(t) &= e^{\int \delta dt} = e^{\delta t } \\
+\int q(t) u(t) dt &= \int k T_0 V_0 e^{-ct} * e^{\delta t} dt \\
+&= k T_0 V_0 \int e^{\delta - c} dt = \frac{k T_0 V_0 }{\delta - c} e^{(\delta - c) t} \\
+T^*(t) &= \frac{\int q(t) u(t) dt + C}{u(t)} \text{, where C is a constant }\\
+& = \frac{k T_0 V_0 }{\delta - c} e^{-ct} + Ce^{-\delta t} 
+\end{align*}
+
+\noindent Let $T^*_0$ denotes $T^*(t = 0)$. Since $\frac{dT^*}{dt} = 0$ at $t = 0$, $k V_0 T_0 = \delta T^*_0 \Rightarrow T^*_0 = \frac{k V_0 T_0}{\delta}$ \\
+
+\noindent Plug initial condition into general solution
+\begin{align*}
+T^*_0 &= \frac{k T_0 V_0 }{\delta - c} + C \\
+\frac{k V_0 T_0}{\delta} &= \frac{k T_0 V_0 }{\delta - c} + C \\
+C &= - \frac{(k V_0 T_0) c}{\delta (\delta - c)}
+\end{align*}
+\noindent Therefore the particular solution for $T^*(t)$ can be written as 
+\begin{align*}
+T^*(t) &= k V_0 T_0 \frac{\delta e^{-ct} - ce^{-\delta t}}{\delta (\delta - c) } = k V_0 T_0 \frac{c e^{-\delta t} - \delta e^{-c t}}{\delta (c - \delta)}
+\end{align*}
+
+\subsection*{b}
+Substitute $T^*(t)$ into equation of $\frac{dV_{NI}}{dt}$, we get 
+\begin{align*}
+\frac{dV_{NI}}{dt} &= \frac{N \delta k V_0 T_0}{\delta (c - \delta)}  (c e^{-\delta t} - \delta e^{-c t})- c V_{NI} \\
+&= \frac{N k V_0 T_0}{c - \delta}  (c e^{-\delta t} - \delta e^{-c t})- c V_{NI} 
+\end{align*}
+\noindent Solve for this ODE
+\begin{align*}
+u(t) &= e^{ct} \\
+\int q(t) u(t) dt &= \int \frac{N k V_0 T_0}{c - \delta}  (c e^{-\delta t} - \delta e^{-c t}) e^{ct} dt \\
+&= \frac{N k V_0 T_0}{c - \delta} \int  (c e^{(c - \delta) t} - \delta e^{(c - c)t}) \\
+&= \frac{N k V_0 T_0}{c - \delta} (\frac{c}{c - \delta} e^{(c - \delta)t} - \delta t) \\
+V_{NI}(t) &= (\int q(t) u(t) dt + C) / u(t) \text{, where C is a constant}\\
+&= (\frac{N k V_0 T_0}{c - \delta} (\frac{c}{c - \delta} e^{(c - \delta)t} - \delta t) + C) / e^{ct} \\
+&= \frac{N k V_0 T_0}{c - \delta}  (\frac{c}{c - \delta} e^{ - \delta t} - \delta t e^{-ct} + C e^{-ct})
+\end{align*}
+\noindent At $t = 0$, the amount of non-infectious virions is zero, i.e. $V_{NI} (t = 0) = 0$. Plug the initial condition into general solution
+\begin{align*}
+\frac{N k V_0 T_0}{c - \delta}  (\frac{c}{c - \delta} e^{ - \delta t_0} - \delta t_0 e^{-ct_0} + C e^{-ct_0}) &= 0 \\
+C =  - \frac{N k V_0 T_0}{c - \delta} \frac{c}{c - \delta}
+\end{align*}
+\noindent Therefore, the solution can be written as $V_{NI}(t) = \frac{N k V_0 T_0}{c - \delta} [\frac{c}{c - \delta} (e^{-\delta t} - e^{-ct}) - \delta t e^{-ct}]$
+
+\subsection*{c}
+\noindent Population of virion is consist of non-infectious and infectious ones. \\
+
+\noindent At time $t$, the amount of non-infectious virion is $V_{NI}(t) = \frac{N k V_0 T_0}{c - \delta} [\frac{c}{c - \delta} (e^{-\delta t} - e^{-ct}) - \delta t e^{-ct}]$ \\
+
+\noindent while the amount of infectious virion is $V_{I}(t) = V_0 e^{-ct}$ \\
+
+\noindent $V(t) = V_{NI}(t) + V_I(t) = \frac{N k V_0 T_0}{c - \delta} [\frac{c}{c - \delta} (e^{-\delta t} - e^{-ct}) - \delta t e^{-ct}] + V_0 e^{-ct}$
+
+
+
+\end{document}

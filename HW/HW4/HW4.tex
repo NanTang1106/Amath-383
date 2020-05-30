@@ -1,0 +1,155 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{setspace} 
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\onehalfspacing
+ 
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{AMATH 383 HW 3}
+\rhead{Nan Tang (1662478)}
+\rfoot{Page \thepage}
+ 
+
+\title{AMATH 383 HW 3}
+\author{Nan Tang 1662478}
+\date{\today}
+ 
+\begin{document}
+\maketitle
+ 
+\section*{Table 3.3}
+
+\begin{verbatim}
+  Year Balance (9 decimals) Balance (10 decimals)
+    0            58000.000            58000.0000
+    1           221908.000           221908.0000
+    2           739902.518           739902.5186
+    3          1317242.863          1317242.8633
+    4            63585.171            63585.1704
+    5           242211.462           242211.4599
+    6           792846.671           792846.6656
+    7          1285569.152          1285569.1569
+    8           184212.474           184212.4560
+    9           635047.189           635047.1371
+   10          1330333.959          1330333.9493
+   11            11970.508            11970.5472
+   12            47452.152            47452.3067
+   13           183053.487           183054.0625
+   14           631688.210           631689.8806
+   15          1329662.856          1329663.2066
+   16            14641.492            14640.0974
+   17            57922.848            57917.3922
+   18           221626.223           221606.2958
+   19           739150.343           739097.1321
+   20          1317571.683          1317594.8163
+   21            62301.312            62210.9653
+   22           237560.887           237233.2485
+   23           780938.022           780094.1514
+   24          1294159.505          1294735.9504
+   25           152091.546           149920.2578
+   26           538970.668           532252.7801
+   27          1284414.529          1279132.0546
+   28           188496.069           207991.7790
+   29           647391.971           702185.3756
+   30          1332218.791          1329548.5972
+   31             4454.442            15095.9718
+   32            17758.241            59700.2221
+   33            70086.898           228108.5388
+   34           265611.072           756333.6387
+   35           850796.563          1309212.8357
+   36          1231621.877            94736.5953
+   37           375810.164           352021.3137
+   38          1079540.817          1036328.2389
+   39           821938.141           923384.2993
+   40          1261005.641          1135621.5046
+   41           273616.884           673577.4132
+   42           869868.938          1333190.0580
+   43          1209459.844              573.0397
+   44           449460.033             2291.1736
+   45          1191797.168             9148.9459
+\end{verbatim}
+ 
+ \noindent R code for reproducing chaotic bank balance
+\begin{verbatim}
+yr <- 45
+K <- 1
+p0 <- 0.058
+rt <- 3
+p_set_9 <- numeric(yr)
+p_set_9[1] <- p0
+p_set_10 <- numeric(yr)
+p_set_10[1] <- p0
+
+# keep decimal to given level
+keep_decimal <- function(origin_num, decimal_place) {
+  temp_num <- floor(origin_num * 10^(decimal_place))
+  return(temp_num / 10^(decimal_place))
+}
+
+# calculate balance at t + delta t
+interest_cal <- function(curr_p, decimal_place) {
+  new_p <- curr_p + rt * curr_p * (1 - curr_p)
+  return(keep_decimal(new_p, decimal_place))
+}
+
+for (i in 1:yr) {
+  new_p_9 <- interest_cal(p_set_9[i], 9)
+  p_set_9[i+1] <- new_p_9
+  
+  new_p_10 <- interest_cal(p_set_10[i], 10)
+  p_set_10[i+1] <- new_p_10
+}
+
+result <- data.frame(0:45, p_set_9 * 1000000, p_set_10 * 1000000)
+names(result) <- c('Year', 'Balance (9 decimals)', 'Balance (10 decimals)')
+print(result, row.names = F)
+\end{verbatim}
+ 
+\section*{Exercise 2.4}
+\subsection*{a}
+\noindent Plug in equations $m = m_c N_c$, $Y = y_0 m^{\frac{3}{4}}$ into differential equation.
+\begin{align*}
+\frac{dN_c}{dt} &= \frac{d N_c}{d m} \cdot \frac{d m}{dt} = \frac{1}{m_c} \frac{dm}{dt}
+\end{align*}
+\begin{align*}
+Y &= Y_c N_c + E_c \frac{dN_c}{dt} \\
+y_0 m^{\frac{3}{4}} &= Y_c N_c + E_c \frac{1}{m_c} \frac{dm}{dt} \\
+\frac{dm}{dt} &= (\frac{y_0 m_c}{E_c}) m^{\frac{3}{4}} - (\frac{Y_c}{E_c})m
+\end{align*}
+ 
+\subsection*{b}
+\noindent Find $M$ by setting $\frac{dm}{dt} = 0$
+\begin{align*}
+\frac{dm}{dt} &= aM^{\frac{3}{4}} - bM = 0 \\
+aM^{\frac{3}{4}} &= bM \\
+M &= (\frac{a}{b})^{4}
+\end{align*}
+\noindent Then $b = \frac{a}{M^{\frac{1}{4}}}$, plug in equation of b into differential equation.
+\begin{align*}
+\frac{dm}{dt} &= a m^{\frac{3}{4}} - \frac{a}{M^{\frac{1}{4}}} m = a m^{\frac{3}{4}}(1 - (\frac{m}{M})^{\frac{1}{4}})
+\end{align*}
+
+\subsection*{c}
+\noindent Solve the separable differential equation.
+\begin{align*}
+\frac{dR}{dt} &= - (\frac{a}{M^{1/4}}) R \\
+\int_0^t \frac{1}{R} dR &= \int - (\frac{a}{M^{1/4}}) dt \\
+ln(R(t)) - ln(R(0)) &= - (\frac{a}{M^{1/4}}) t \\
+ln(R(t) / R(0)) &= - (\frac{at}{M^{1/4}}) \\
+ln(\frac{  R(t)} {R(0)}) / (\frac{at}{M^{1/4}}) &= -1
+\end{align*}
+\noindent This shows slope of of $ln(\frac{  R(t)} {R(0)})$ vs $(\frac{at}{M^{1/4}})$ is equal to -1
+
+
+\subsection*{d}
+\noindent Previous problem shows that $ln(\frac{R(t)}{R(0)}) = - \frac{at}{M^{1/4}}$, where $a$ is a constant. Therefore, for some given time $t$, the interval between heartbeats depends on $M^{\frac{1}{4}}$.
+
+\end{document}

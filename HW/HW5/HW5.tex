@@ -1,0 +1,175 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{setspace} 
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\onehalfspacing
+ 
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{AMATH 383 HW 5}
+\rhead{Nan Tang (1662478)}
+\rfoot{Page \thepage}
+ 
+
+\title{AMATH 383 HW 5}
+\author{Nan Tang 1662478}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 13.4}
+\subsection*{a}
+\noindent Assume $u(y,t) = \phi(y) e^{i \omega_0 t}$, then 
+\begin{align*}
+\frac{\partial u}{\partial t} &=  i \omega_0 \phi(y) e^{i \omega_0 t} \\
+\frac{\partial^2 u}{\partial y^2} &= \frac{\partial}{\partial y} [\phi(y)' e^{i \omega_0 t}] \\
+&= \phi''(y) e^{i \omega_0 t}
+\end{align*}
+\noindent Plug in partial differentiation of $u(y,t)$ into ODE, 
+\begin{align*}
+\frac{\partial u}{\partial t} &= \alpha^2 \frac{\partial^2 u}{\partial y^2} \\
+ i \omega_0 \phi(y) e^{i \omega_0 t} &= \alpha^2 \phi''(y) e^{i \omega_0 t} \\
+ i \omega_0 \phi(y) &= \alpha^2 \phi''(y) 
+\end{align*}
+\noindent Solve this second order ODE by assuming $\phi(y) = e^{\lambda y}$,
+\begin{align*}
+\phi''(y) - \frac{i \omega_0 \phi(y)}{\alpha^2} &= 0 \\
+\lambda^2 e^{\lambda y} - \frac{i \omega_0}{\alpha^2}  e^{\lambda y} &= 0 \\
+\lambda &= \pm \frac{\sqrt{i \omega_0}}{\alpha} \\
+\phi(y) &= c_1 e^{\frac{\sqrt{i \omega_0}}{\alpha} y} + c_2 e^{-\frac{\sqrt{i \omega_0}}{\alpha} y}
+\end{align*}
+\noindent Since $c_1 + c_2 = u_0$, $u(y,t)$ is bounded as $y \rightarrow \infty$, therefore $c_1 = 0$ since $\sqrt{\frac{i \omega_0}{\sigma^2}} > 0$, $e^{\frac{\sqrt{i \omega_0}}{\alpha} y}$ is unbounded as $y \rightarrow \infty$. Then, we get $c_2 = u_0$, plug in $c_1, c_2$ to function of $\phi(y)$: \\
+\begin{align*}
+\phi(y) &=  c_1 e^{\frac{\sqrt{i \omega_0}}{\alpha} y} + c_2 e^{-\frac{\sqrt{i \omega_0}}{\alpha} y} \\
+&= u_0 e^{-\frac{\sqrt{i \omega_0}}{\alpha} y} \\
+u(y,t) &= u_0 e^{-\frac{\sqrt{i \omega_0}}{\alpha} y} e^{i \omega_0 t}
+\end{align*} \\
+
+\subsection*{b}
+\noindent The daily conductivity of soil is $0.01 \cdot 3600 \cdot 24 = 864 cm^2/day$. \\
+
+\noindent Note that $\sqrt{i} = \frac{1}{\sqrt{2}} (1 + i)$, real part of $e^{i \theta} = cos(\theta)$. If we choose only real part, the function of $u(y,t)$ can be written as:
+
+\begin{align*}
+u(y, t) &= u_0 e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1 + i)y + i \omega_0 t} \\
+&= u_0 e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1)y} cos(- \sqrt{\frac{\omega_0}{2 \alpha^2}} y + \omega_0 t)
+\end{align*}
+
+\noindent Note that for given $y$, and frequency $\omega_0 = 2 \pi$, the period of $cos(- \sqrt{\frac{\omega_0}{2 \alpha^2}} y + \omega_0 t)$ is 1. Let the unit of t be daily, then for any $t$, such that $a < t < a+1$, where $a$ is natural number, $-1 \leq cos(- \sqrt{\frac{\omega_0}{2 \alpha^2}} y + \omega_0 t) \leq 1$. Therefore, the daily variation of temperature ranges from $- u_0 e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1)y}$ to $u_0 e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1)y} $. \\
+
+\noindent Plug the initial conditions $u_0=5, |u| = 2, \alpha^2 = 864$ into previous equation:
+\begin{align*}
+2 &= 5 e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1)y} \\
+log(\frac{2}{5}) &= log(e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1)y} ) \\
+y &= \frac{log(\frac{2}{5})}{-\sqrt{\frac{2 \pi}{2 \alpha^2}}} \approx 15.2
+\end{align*}
+
+\noindent Depth below 15.2 cm will control daily temperature variation within 2 degrees. \\
+
+
+
+\subsection*{c}
+\noindent The yearly conductivity of soil is $0.01 \cdot 3600 \cdot 24 \cdot 365 = 315360 cm^2/year$. \\
+
+\noindent Note that $\sqrt{i} = \frac{1}{\sqrt{2}} (1 + i)$, real part of $e^{i \theta} = cos(\theta)$. If we choose only real part, the function of $u(y,t)$ can be written as:
+
+\begin{align*}
+u(y, t) &= u_0 e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1 + i)y + i \omega_0 t} \\
+&= u_0 e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1)y} cos(- \sqrt{\frac{\omega_0}{2 \alpha^2}} y + \omega_0 t)
+\end{align*}
+
+\noindent Note that for given $y$, and frequency $\omega_0 = 2 \pi$, the period of $cos(- \sqrt{\frac{\omega_0}{2 \alpha^2}} y + \omega_0 t)$ is 1. Let the unit of t be yearly, then for any $t$, such that $a < t < a+1$, where $a$ is natural number, $-1 \leq cos(- \sqrt{\frac{\omega_0}{2 \alpha^2}} y + \omega_0 t) \leq 1$. Therefore, the yearly variation of temperature ranges from $- u_0 e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1)y}$ to $u_0 e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1)y} $. \\
+
+\noindent Plug the initial conditions $u_0=15, |u| = 2, \alpha^2 = 315360$ into previous equation:
+\begin{align*}
+2 &= 15 e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1)y} \\
+log(\frac{2}{15}) &= log(e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1)y} ) \\
+y &= \frac{log(\frac{2}{15})}{-\sqrt{\frac{2 \pi}{2 \alpha^2}}} \approx 638.55
+\end{align*}
+
+\noindent Depth below 638.55 cm will control daily temperature variation within 2 degrees. \\
+
+\subsection*{d}
+\noindent At $y = 0$, $u(y, t) = u_0 cos(\omega_0 t)$, for $y > 0$, $u(y, t) = u_0 e^{- \sqrt{\frac{\omega_0}{2 \alpha^2}}(1)y} cos(- \sqrt{\frac{\omega_0}{2 \alpha^2}} y + \omega_0 t)$. \\
+
+\noindent We can see phase at $y = 0$ is $(\omega_0 t)$, phase at ideal depth is $(- \sqrt{\frac{\omega_0}{2 \alpha^2}}y + \omega_0 t)$. The phase difference is $(- \sqrt{\frac{\omega_0}{2 \alpha^2}} y)$. \\
+
+\noindent Since we want the temperature at ideal depth to be inverse as to surface temperature, the phase shift should be $\frac{1}{2}$ or $- \frac{1}{2}$ (note the period is 1). Here, we choose phase shift $- \frac{1}{2}$ then we can come up with equation:
+\begin{align*}
+- (\sqrt{\frac{\omega_0}{2 \alpha^2}} y) &= - \frac{1}{2} \cdot 2 \pi \\
+y &= \pi \sqrt{\frac{2 \alpha^2}{\omega_0}} = \pi \sqrt{\frac{2 \cdot 315360}{2 \pi}} \approx 995.1
+\end{align*}
+\noindent At depth of 995.1 cm, the cellar will be perfectly out of phase than surface. 
+
+
+\newpage
+\section*{Exercise 2.7}
+\subsection*{a}
+\noindent Change in number of nodes that have $k$ citations can be represented by 
+\begin{align*}
+N_k(n + 1) - N_k(n) 
+\end{align*}
+\noindent Such difference can also be explained by subtraction between two parts. The first part is number of nodes that previously had $(k - 1)$ citation now being cited by new node. The second part is number of nodes that previously had $k$ also begin cited by new node. \\
+
+\noindent The first part can be represented by multiple probability for notes with $k-1$ citations of being cited with number of citations in new node:
+\begin{align*}
+\frac{(k - 1) P_{k - 1}(n)}{2m} \cdot m \rightarrow \frac{(k - 1) P_{k - 1}(n)}{2}
+\end{align*}
+
+\noindent The second part can be represented by multiple probability for notes with $k$ citations of being cited with number of citations in new node:
+\begin{align*}
+\frac{k P_{k}(n)}{2m} \cdot m \rightarrow \frac{k P_{k}(n)}{2} 
+\end{align*}
+
+\noindent Change in number of nodes that have $k$ citations can be represented by part one minus part two:
+
+\begin{align*}
+N_k(n + 1) - N_k(n) = \frac{(k - 1) P_{k - 1}(n)}{2} - \frac{k P_{k}(n)}{2} 
+\end{align*} \\
+
+\subsection*{b}
+\noindent The fraction of nodes with $k$ citations $P_k$ can be represented as:
+
+\begin{align*}
+P_k(n) &= \frac{Nk(n)}{n}
+\end{align*}
+
+\noindent When $n$ is large enough, such fraction $P_k(n)$ is independent to $n$, therefore, we can write $P_k(n)$ as constant $P_k$
+
+\begin{align*}
+N_k(n) &= n \cdot P_k \\
+N_k(n + 1) &= (n + 1) P_k \\
+\end{align*}
+\begin{align*}
+N_k(n + 1) - N_k(n) &= \frac{(k - 1) P_{k - 1}}{2} - \frac{k P_{k}}{2} \\
+(n + 1) P_k - n \cdot P_k &= \frac{(k - 1) P_{k - 1}}{2} - \frac{k P_{k}}{2} \\
+\frac{P_k}{P_{k-1}} &= \frac{k-1}{k+2}
+\end{align*} \\
+
+\subsection*{c}
+\noindent From previous part, we know the relationship between $P_k$ and $P_{k-1}$.
+\begin{align*}
+P_k &= \frac{k-1}{k+2} P_{k-1} \\
+&= \frac{k-1}{k+2} \cdot  \frac{k-2}{k+1} \cdot  P_{k-2} \\
+&= \frac{k-1}{k+2} \cdot \frac{k-2}{k+1} \cdot \frac{k-3}{k} \cdot P_{k-3} \\
+&= \frac{(k - 1) !}{(k + 2)(k + 1)k ... 5} P_2
+\end{align*}
+\noindent By canceling the common factors, and consider $P_2$ as a constant, we get
+\begin{align*}
+P_k &\propto\frac{1}{(k+2) (k+1) k}
+\end{align*}
+\noindent When $k$ goes large enough:
+\begin{align*}
+P_k \propto k^{-3}
+\end{align*}
+
+
+\end{document}
